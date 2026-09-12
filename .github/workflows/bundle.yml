@@ -107,8 +107,6 @@ jobs:
         include:
           - arch: x86_64
             conveyor-arch: amd64
-          - arch: aarch64
-            conveyor-arch: aarch64
     steps:
       - uses: actions/checkout@v7
         with:
