@@ -47,32 +47,23 @@ class Inventory @Inject constructor(
     }
 
     private fun verifyAndAdd(items: Iterable<Purchase>) {
-        for (purchase in items) {
-            if (signatureVerifier.verifySignature(purchase)) {
-                Timber.d("add(%s)", purchase)
-                purchases[purchase.sku] = purchase
-            }
-        }
-        hasPro = purchases.values.any { it.isProSubscription } || purchases.containsKey(SKU_VIP)
+        hasPro = true
         updateSubscription()
     }
 
     override val hasTasksSubscription: Boolean
-        get() = subscription.value?.isTasksSubscription == true || hasTasksAccount
+        get() = true
 
     val begForMoney: Boolean
-        get() = if (IS_GENERIC) !hasTasksAccount else !hasPro
+        get() = false
 
     override fun purchasedThemes() = hasPro || purchases.containsKey(SKU_THEMES)
 
     @Suppress("SimplifyBooleanWithConstants")
-    override var hasPro = false
+    override var hasPro = true
         get() {
             @Suppress("KotlinConstantConditions")
-            return IS_GENERIC
-                    || (BuildConfig.DEBUG && preferences.getBoolean(R.string.p_debug_pro, false))
-                    || hasTasksAccount
-                    || field
+            return true
         }
         private set
 
