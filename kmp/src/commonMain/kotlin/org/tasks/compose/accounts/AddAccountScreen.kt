@@ -212,6 +212,7 @@ fun AddAccountScreen(
                 val freeAccounts = buildList {
                     if (configuration.supportsMicrosoft && !isDesktop) add(Platform.MICROSOFT)
                     if (configuration.supportsGoogleTasks && !isDesktop) add(Platform.GOOGLE_TASKS)
+                    add(Platform.CALDAV)
                 }
                 if (freeAccounts.isNotEmpty()) {
                     if (!hasPro) {
@@ -249,14 +250,6 @@ fun AddAccountScreen(
                     }
                 }
 
-                val proAccounts = buildList {
-                    if (configuration.supportsMicrosoft && isDesktop) add(Platform.MICROSOFT)
-                    if (configuration.supportsGoogleTasks && isDesktop) add(Platform.GOOGLE_TASKS)
-                    if (configuration.supportsOpenTasks) add(Platform.DAVX5)
-                    if (configuration.supportsCaldav) add(Platform.CALDAV)
-                    if (configuration.supportsEteSync) add(Platform.ETEBASE)
-                    if (configuration.supportsOpenTasks) add(Platform.DECSYNC_CC)
-                }
                 if (proAccounts.isNotEmpty()) {
                     if (!hasPro) {
                         SectionHeader(
