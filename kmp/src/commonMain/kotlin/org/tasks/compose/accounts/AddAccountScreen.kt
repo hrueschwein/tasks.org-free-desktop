@@ -212,7 +212,7 @@ fun AddAccountScreen(
                 val freeAccounts = buildList {
                     if (configuration.supportsMicrosoft) add(Platform.MICROSOFT)
                     if (configuration.supportsGoogleTasks) add(Platform.GOOGLE_TASKS)
-                    if (configuration.supportsCaldav) add(Platform.CALDAV)
+                    if (true) add(Platform.CALDAV)
                     if (configuration.supportsOpenTasks) add(Platform.DAVX5)
                 }
                 if (freeAccounts.isNotEmpty()) {
