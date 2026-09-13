@@ -249,6 +249,7 @@ fun AddAccountScreen(
                         }
                     }
                 }
+                val proAccounts = buildList {}
 
                 if (proAccounts.isNotEmpty()) {
                     if (!hasPro) {
