@@ -210,9 +210,10 @@ fun AddAccountScreen(
 
                 val isDesktop = configuration.billingProvider == BillingProvider.PADDLE
                 val freeAccounts = buildList {
-                    if (configuration.supportsMicrosoft && !isDesktop) add(Platform.MICROSOFT)
-                    if (configuration.supportsGoogleTasks && !isDesktop) add(Platform.GOOGLE_TASKS)
-                    add(Platform.CALDAV)
+                    if (configuration.supportsMicrosoft) add(Platform.MICROSOFT)
+                    if (configuration.supportsGoogleTasks) add(Platform.GOOGLE_TASKS)
+                    if (configuration.supportsCaldav) add(Platform.CALDAV)
+                    if (configuration.supportsOpenTasks) add(Platform.DAVX5)
                 }
                 if (freeAccounts.isNotEmpty()) {
                     if (!hasPro) {
@@ -249,7 +250,12 @@ fun AddAccountScreen(
                         }
                     }
                 }
-                val proAccounts = buildList {}
+                val proAccounts = buildList {
+                    if (configuration.supportsMicrosoft && isDesktop) add(Platform.MICROSOFT)
+                    if (configuration.supportsGoogleTasks && isDesktop) add(Platform.GOOGLE_TASKS)
+                    if (configuration.supportsOpenTasks) add(Platform.DECSYNC_CC)
+                }
+
 
                 if (proAccounts.isNotEmpty()) {
                     if (!hasPro) {
